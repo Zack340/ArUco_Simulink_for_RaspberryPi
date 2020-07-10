@@ -25,17 +25,17 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
 
   The following commands will update and upgrade any existing packages, followed by installing dependencies. Some libraries are installed when you build environment on the Raspberry Pi with Simulink support package.
   ```
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get install build-essential cmake pkg-config
-$ sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
-$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
-$ sudo apt-get install libxvidcore-dev libx264-dev
-$ sudo apt-get install libgtk2.0-dev libgtk-3-dev
-$ sudo apt-get install libcanberra-gtk*
-$ sudo apt-get install libatlas-base-dev gfortran
-$ sudo apt-get install python2.7-dev python3-dev
-```
+  $ sudo apt-get update
+  $ sudo apt-get upgrade
+  $ sudo apt-get install build-essential cmake pkg-config
+  $ sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+  $ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+  $ sudo apt-get install libxvidcore-dev libx264-dev
+  $ sudo apt-get install libgtk2.0-dev libgtk-3-dev
+  $ sudo apt-get install libcanberra-gtk*
+  $ sudo apt-get install libatlas-base-dev gfortran
+  $ sudo apt-get install python2.7-dev python3-dev
+  ```
 
  **2. Download the OpenCV source code**
 
