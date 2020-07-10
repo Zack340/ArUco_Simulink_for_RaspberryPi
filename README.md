@@ -1,4 +1,4 @@
-# temp
+# ArUco AR marker with Simulink for Raspberry Pi
 
 ## Overview
 This model makes it possible to ArUco marker detection and pose estimation on the Raspberry Pi using Simulink. Using this model, data on the number and position of AR markers can be directly imported into Simulink.
