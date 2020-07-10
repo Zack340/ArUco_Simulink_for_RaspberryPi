@@ -24,7 +24,7 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
   **1. Install dependencies**
 
   The following commands will update and upgrade any existing packages, followed by installing dependencies. Some libraries are installed when you build environment on the Raspberry Pi with Simulink support package.
-```
+  ```
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get install build-essential cmake pkg-config
