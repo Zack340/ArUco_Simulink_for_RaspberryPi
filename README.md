@@ -21,9 +21,9 @@ Created with
 OpenCV must be installed to run this model on the Raspberry Pi. In addition, a calibration data file is required for pose estimation. Follow the steps below to prepare them.
 - ####  Installing OpenCV
 
- **1. Install dependencies**
+  **1. Install dependencies**
 
- The following commands will update and upgrade any existing packages, followed by installing dependencies. Some libraries are installed when you build environment on the Raspberry Pi with Simulink support package.
+  The following commands will update and upgrade any existing packages, followed by installing dependencies. Some libraries are installed when you build environment on the Raspberry Pi with Simulink support package.
 ```
 $ sudo apt-get update
 $ sudo apt-get upgrade
