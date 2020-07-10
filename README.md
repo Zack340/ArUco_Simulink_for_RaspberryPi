@@ -115,47 +115,47 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
 
 ### Getting started
  - #### Get AR marker
- Create an AR marker to be detected. You can get the marker image data from this link.
+  Create an AR marker to be detected. You can get the marker image data from this link.
  \
  [ArUco markers generator!](https://chev.me/arucogen/)
 
  - #### Marker detection
- 1. Open the "*ArUcoSampleModel.slx*" model and double-click the "*ArUco*" block to open the "*block parameter*".
+  1. Open the "*ArUcoSampleModel.slx*" model and double-click the "*ArUco*" block to open the "*block parameter*".
 
- 2. In "*General configuration*", match the setting of AR marker size and dictionary created with "Get Marker" section.
+  2. In "*General configuration*", match the setting of AR marker size and dictionary created with "Get Marker" section.
 
- 3. Open the "*Camera*" tab and set the "*camera source*" and "*resolution*" to the same as when calibrating. Click OK to close the settings.
+  3. Open the "*Camera*" tab and set the "*camera source*" and "*resolution*" to the same as when calibrating. Click OK to close the settings.
 
- 4. Open the model's "*configuration parameters*" and change settings as needed. For example, Device Address, Username, etc.
+  4. Open the model's "*configuration parameters*" and change settings as needed. For example, Device Address, Username, etc.
 
- 5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the marker detection in the launched View screen. And then, you can check the ID and corner data received on the display block.
+  5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the marker detection in the launched View screen. And then, you can check the ID and corner data received on the display block.
 
   **Note :** *The status signal is 1 (true) while the marker is detected and 0 (false) otherwise.*
 
  - #### Pose estimation
- 1. Carry out steps 1 to 3 in the "*Marker detection*" section.
+  1. Carry out steps 1 to 3 in the "*Marker detection*" section.
 
- 2. Under "*Detecting Data*" on the "*Output*" tab, select the check box for "*Enable vectors data*".
+  2. Under "*Detecting Data*" on the "*Output*" tab, select the check box for "*Enable vectors data*".
 
- 3. If you move to the "*Camera*" tab, you can confirm that the "*Calibration source*" item of "*Source*" is increasing. Enter the **full path** of the calibration data file on the Raspberry Pi here. Click OK to close the settings.
+  3. If you move to the "*Camera*" tab, you can confirm that the "*Calibration source*" item of "*Source*" is increasing. Enter the **full path** of the calibration data file on the Raspberry Pi here. Click OK to close the settings.
 
- 4. You will see that the block icon has changed to Pose estimation and "*rvecs*" and "*tvecs*" are added to the block output. Connect the "*Display block*" to the two outputs. Reconnect the line connecting to "*SDL Video Display*" to the "*image*" output port.
+  4. You will see that the block icon has changed to Pose estimation and "*rvecs*" and "*tvecs*" are added to the block output. Connect the "*Display block*" to the two outputs. Reconnect the line connecting to "*SDL Video Display*" to the "*image*" output port.
 
- 5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the pose estimation in the launched View screen! And then, you can check the rvecs and tvecs data received on the display block.
+  5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the pose estimation in the launched View screen! And then, you can check the rvecs and tvecs data received on the display block.
 
   **Note :** *rvecs is the rotation data of the markers and tvecs is the position data.*
 
 ## Limitation
 - #### Image viewer processing load
-"*SDL Video Display*" block consumes a lot of CPU resources of Raspberry Pi. It is recommended to use the block only for debugging. Remove when implementing the control.
+ "*SDL Video Display*" block consumes a lot of CPU resources of Raspberry Pi. It is recommended to use the block only for debugging. Remove when implementing the control.
 - #### Image viewer resolution
-Due to the communication capacity constraint between Simulink and Raspberry Pi, the number of pixels of SDL Video Display will be limited to 0.5M pixels at maximum while maintaining the aspect ratio. However, this limitation does not affect the marker detection, it will be processed at the configured resolution.
+ Due to the communication capacity constraint between Simulink and Raspberry Pi, the number of pixels of SDL Video Display will be limited to 0.5M pixels at maximum while maintaining the aspect ratio. However, this limitation does not affect the marker detection, it will be processed at the configured resolution.
 - #### Detection speed
-The update rate of marker detection is limited to 5Hz(0.2sec) under the condition of detecting 5 markers with 640x480 resolution. The update rate depends on the resolution and the number of markers detecting.
+ he update rate of marker detection is limited to 5Hz(0.2sec) under the condition of detecting 5 markers with 640x480 resolution. The update rate depends on the resolution and the number of markers detecting.
 
 ## Troubleshoot
 - #### "/usr/bin/ld: cannot find -lSDL" error is occurred during build
-It is displayed because there is no corresponding library in Raspberry Pi. Run the following command on the Raspberry Pi to add the library.
-```
-$ sudo apt-get install libsdl-dev
-```
+ It is displayed because there is no corresponding library in Raspberry Pi. Run the following command on the Raspberry Pi to add the library.
+ ```
+ $ sudo apt-get install libsdl-dev
+ ```
