@@ -37,81 +37,81 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
   $ sudo apt-get install python2.7-dev python3-dev
   ```
 
- **2. Download the OpenCV source code**
+  **2. Download the OpenCV source code**
 
- Download both the "opencv" and "opencv_contrib" repositories. In the following command, OpenCV version is `3.4.10`. Replace it with the version you will use.
-```
-$ cd ~
-$ wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.10.zip
-$ unzip opencv.zip
-$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.10.zip
-$ unzip opencv_contrib.zip
-```
+  Download both the "opencv" and "opencv_contrib" repositories. In the following command, OpenCV version is `3.4.10`. Replace it with the version you will use.
+  ```
+  $ cd ~
+  $ wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.10.zip
+  $ unzip opencv.zip
+  $ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.10.zip
+  $ unzip opencv_contrib.zip
+  ```
 
- **3. Build and install the OpenCV**
+  **3. Build and install the OpenCV**
 
- You are ready to build. Run the build with the following command. Replace the version you will use. The following command has `NEON` and `VFPV3` flags enabled and `TBB` and `OPENMP` flags for parallelization enabled.
-```
-$ cd ~/opencv-3.4.10/
-$ mkdir build
-$ cd build
-$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.10/modules \
-    -D ENABLE_NEON=ON \
-    -D ENABLE_VFPV3=ON \
-    -D BUILD_TESTS=OFF \
-    -D WITH_OPENMP=ON \
-    -D BUILD_OPENMP=ON \
-    -D WITH_TBB=ON \
-    -D BUILD_TBB=ON \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D OPENCV_ENABLE_NONFREE=ON \
-    -D CMAKE_SHARED_LINKER_FLAGS=-latomic \
-    -D BUILD_EXAMPLES=OFF ..
-```
- **Note:** *`cmake` will download the necessary libraries. Sometimes the download fails. In that case, the build will fail. It is recommended that you will check "CMakeDownloadLog.txt" in the build folder.*
- ```
-$ make -j4
- ```
+  You are ready to build. Run the build with the following command. Replace the version you will use. The following command has `NEON` and `VFPV3` flags enabled and `TBB` and `OPENMP` flags for parallelization enabled.
+  ```
+  $ cd ~/opencv-3.4.10/
+  $ mkdir build
+  $ cd build
+  $ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.10/modules \
+      -D ENABLE_NEON=ON \
+      -D ENABLE_VFPV3=ON \
+      -D BUILD_TESTS=OFF \
+      -D WITH_OPENMP=ON \
+      -D BUILD_OPENMP=ON \
+      -D WITH_TBB=ON \
+      -D BUILD_TBB=ON \
+      -D INSTALL_PYTHON_EXAMPLES=OFF \
+      -D OPENCV_ENABLE_NONFREE=ON \
+      -D CMAKE_SHARED_LINKER_FLAGS=-latomic \
+      -D BUILD_EXAMPLES=OFF ..
+  ```
+  **Note:** *`cmake` will download the necessary libraries. Sometimes the download fails. In that case, the build will fail. It is recommended that you will check "CMakeDownloadLog.txt" in the build folder.*
+  ```
+  $ make -j4
+  ```
 
- And then, use the following command to complete the installation.
-```
-$ sudo make install
-$ sudo ldconfig
-```
+  And then, use the following command to complete the installation.
+  ```
+  $ sudo make install
+  $ sudo ldconfig
+  ```
 
 - #### Making calibration file
 
- **1. Print chessboard pattern**
+  **1. Print chessboard pattern**
 
- Print the checkerboard used for calibration. It can be downloaded from this link.
- \
- [Input chessboard pattern (opencv.org)](https://docs.opencv.org/2.4/_downloads/pattern.png)
- \
- It does not matter if the scale is changed a little during printing. However, each grid must be square. Stick the printed paper on the flat plate with tension.
+  Print the checkerboard used for calibration. It can be downloaded from this link.
+  \
+  [Input chessboard pattern (opencv.org)](https://docs.opencv.org/2.4/_downloads/pattern.png)
+  \
+  It does not matter if the scale is changed a little during printing. However, each grid must be square. Stick the printed paper on the flat plate with tension.
 
- **2. Collect images**
+  **2. Collect images**
 
- Collect images for the camera calibration. Move the chess board or camera to collect images at various distances and angles. About **20 images** are required for calibration.\
- There is a python script for taking images in the calibration folder. If you want to save an image with a resolution of "*640 x 480*" to the "*data*" folder, execute the following command.
+  Collect images for the camera calibration. Move the chess board or camera to collect images at various distances and angles. About **20 images** are required for calibration.\
+  There is a python script for taking images in the calibration folder. If you want to save an image with a resolution of "*640 x 480*" to the "*data*" folder, execute the following command.
 
- ```
- $ python save_snapshots.py --folder data --dwidth 640 --dheight 480
- ```
- Press the **spacebar** to save the camera image, press the **q** key to exit.
+  ```
+  $ python save_snapshots.py --folder data --dwidth 640 --dheight 480
+  ```
+  Press the **spacebar** to save the camera image, press the **q** key to exit.
 
- *The original of this script from : [ tizianofiorenzani / how_do_drones_work ](https://github.com/tizianofiorenzani/how_do_drones_work)*
+  *The original of this script from : [ tizianofiorenzani / how_do_drones_work ](https://github.com/tizianofiorenzani/how_do_drones_work)*
 
- **3. Make calibration file**
+  **3. Make calibration file**
 
- Create a data file for calibration with the collected images. If you have a "*25mm*" square chess board image saved in the "*data*" folder and you want to save the calibration data in "*calibration.yml*", run the command as follows:
- ```
- $ python calibrate.py --square_size=25.0 --file_name='calibration.yml' './data/*.jpg'
- ```
- You will see that the calibration data file is created in current folder.
+  Create a data file for calibration with the collected images. If you have a "*25mm*" square chess board image saved in the "*data*" folder and you want to save the calibration data in "*calibration.yml*", run the command as follows:
+  ```
+  $ python calibrate.py --square_size=25.0 --file_name='calibration.yml' './data/*.jpg'
+  ```
+  You will see that the calibration data file is created in current folder.
 
- *The original of this script from : [OpenCV: Open Source Computer Vision Library](https://github.com/opencv/opencv)*
+  *The original of this script from : [OpenCV: Open Source Computer Vision Library](https://github.com/opencv/opencv)*
 
 ### Getting started
  - #### Get AR marker
