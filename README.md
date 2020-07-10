@@ -120,19 +120,20 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
   [ArUco markers generator!](https://chev.me/arucogen/)
 
  - #### Marker detection
-  1. Open the "*ArUcoSampleModel.slx*" model and double-click the "*ArUco*" block to open the "*block parameter*".
+ 
+   1. Open the "*ArUcoSampleModel.slx*" model and double-click the "*ArUco*" block to open the "*block parameter*".
 
-  2. In "*General configuration*", match the setting of AR marker size and dictionary created with "Get Marker" section.
+   2. In "*General configuration*", match the setting of AR marker size and dictionary created with "Get Marker" section.
 
-  3. Open the "*Camera*" tab and set the "*camera source*" and "*resolution*" to the same as when calibrating. Click OK to close the settings.
+   3. Open the "*Camera*" tab and set the "*camera source*" and "*resolution*" to the same as when calibrating. Click OK to close the settings.
 
-  4. Open the model's "*configuration parameters*" and change settings as needed. For example, Device Address, Username, etc.
+   4. Open the model's "*configuration parameters*" and change settings as needed. For example, Device Address, Username, etc.
 
-  5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the marker detection in the launched View screen. And then, you can check the ID and corner data received on the display block.
+   5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the marker detection in the launched View screen. And then, you can check the ID and corner data received on the display block.
 
-   **Note :** *The status signal is 1 (true) while the marker is detected and 0 (false) otherwise.*
+       **Note :** *The status signal is 1 (true) while the marker is detected and 0 (false) otherwise.*
 
- - #### Pose estimation
+- #### Pose estimation
    1. Carry out steps 1 to 3 in the "*Marker detection*" section.
 
    2. Under "*Detecting Data*" on the "*Output*" tab, select the check box for "*Enable vectors data*".
@@ -143,7 +144,7 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
 
    5. Click "*Monitor & tune*" on the model's "*Hardware*" tab to start model. You will see the pose estimation in the launched View screen! And then, you can check the rvecs and tvecs data received on the display block.
 
-   **Note :** *rvecs is the rotation data of the markers and tvecs is the position data.*
+       **Note :** *rvecs is the rotation data of the markers and tvecs is the position data.*
 
 ## Limitation
 - #### Image viewer processing load
