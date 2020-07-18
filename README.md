@@ -163,4 +163,4 @@ OpenCV must be installed to run this model on the Raspberry Pi. In addition, a c
   $ sudo apt-get install libsdl-dev
   ```
   
-  <meta name="google-site-verification" content="I3uzU8kCqKOIBnYisjR0kDYVw1raV_Hxddjh0mIr2K0" />
+<meta name="google-site-verification" content="I3uzU8kCqKOIBnYisjR0kDYVw1raV_Hxddjh0mIr2K0" />
